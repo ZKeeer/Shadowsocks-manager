@@ -8,7 +8,7 @@ shadowsocks多用户管理，一键安装shadowsocks和ssadmin，控制端口流
 <hr/>
 <h3>如何使用</h3>
 0.尽量使用root用户登录<br/>
-1.使用wget <br/>
+1.使用wget https://github.com/ZKeeer/SSAdmin.git<br/>
 2.进入ssadmin目录<br/>
 3.使用命令python3 setup.py install进行安装，大约耗时2~4分钟<br/>
 4.使用命令python3 setup.py start/stop/restart可启动/停止/重启ssadmin<br/>
