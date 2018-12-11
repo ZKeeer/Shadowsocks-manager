@@ -1,0 +1,369 @@
+<!DOCTYPE>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="Keywords" content="" />
+		<meta name="descriotion" content="" />
+		<title>SSAdmin配置信息</title>
+		<link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css">
+		<style>
+			table.scholarship_gainer_table {
+				width: 300px;
+				height: 180px;
+				margin: 26px 0 0 44px;
+			}
+			
+			table tbody .first-tr {
+				background: #f5f5f5;
+			}
+			
+			.locationWrap {
+				background: #FFF;
+				height: 40px;
+				line-height: 40px;
+				overflow: hidden;
+				color: #898989;
+			}
+			
+			.locationWrap .location {
+				float: left;
+				height: 40px;
+				line-height: 40px;
+				padding-left: 20px;
+			}
+			
+			.locationWrap .location a,
+			.locationWrap .location a:active .locationWrap .location a:visited {
+				color: #898989;
+			}
+			
+			.locationWrap .location a:hover {
+				text-decoration: underline;
+			}
+			
+			.page-divide {
+				width: 354px;
+				margin: 0 0 0 44px;
+			}
+			
+			table thead tr th {
+				text-align: center;
+			}
+			
+			table tbody tr td {
+				text-align: center;
+			}
+			
+			.row {
+				width: 520px;
+				margin: 0 auto;
+			}
+			
+			.row .col-sm-12 {
+				margin-bottom: 10px;
+			}
+			
+			.col-sm-4.form-control {
+				width: 150px;
+				margin-right: 35px
+			}
+			
+			.form-control {
+				width: 94px;
+			}
+			
+			span.col-sm-3 {
+				margin: 4px 21px;
+			}
+			
+			.submit_btn {
+				width: 105px;
+				height: 34px;
+				margin-left: 15px;
+				border-radius: 6px;
+				color: #333;
+				background-color: #fff;
+				border-color: #ccc;
+			}
+			
+			
+			.close_btn {
+				width: 110px;
+				height: 34px;
+				border-radius: 6px;
+				color: #333;
+				background-color: #fff;
+				border-color: #ccc;
+			}
+			
+			.modify_btn {
+				margin-top: 26px;
+				margin-left: 44px;
+				
+				width: 95px;
+				height: 34px;
+				border-radius: 6px;
+				color: #333;
+				background-color: #fff;
+				border-color: #ccc;
+			}
+			.restart_btn {
+				margin-top: 26px;
+				margin-left: 23px;
+				
+				width: 95px;
+				height: 34px;
+				border-radius: 6px;
+				color: #333;
+				background-color: #fff;
+				border-color: #ccc;
+			}
+			.stop_btn {
+				margin-top: 26px;
+				margin-left: 23px;
+				
+				width: 95px;
+				height: 34px;
+				border-radius: 6px;
+				color: #333;
+				background-color: #fff;
+				border-color: #ccc;
+			}
+			
+			select {
+				border: none;
+				height: auto;
+				width: auto;
+				text-align: center;
+				overflow: hidden;
+			}
+			
+			select:hover {
+				border: none;
+				background-color: rgb(245, 245, 245);
+				text-align: center;
+				overflow: hidden;
+			}
+			
+			h4 span {
+				font-size: 15px;
+				color: #2fd633;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!-- ss配置信息及操作 -->
+		<div>
+			<section class="locationWrap">
+				<p class="location">您的当前位置&nbsp;：&nbsp; ss配置信息及操作</p>
+			</section>
+			<table class="table table-hover table-bordered scholarship_gainer_table">
+				<tr>
+					<th>server:</th>
+					<td id="tb_server"></td>
+				</tr>
+				<tr>
+					<th>local_address:</th>
+					<td id="tb_local_address"></td>
+				</tr>
+				<tr>
+					<th>local_port:</th>
+					<td id="tb_local_port"></td>
+				</tr>
+				<tr>
+					<th>timeout:</th>
+					<td id="tb_timeout"></td>
+				</tr>
+				<tr>
+					<th>method:</th>
+					<td id="tb_method"></td>
+				</tr>
+				<tr>
+					<th>fast_open:</th>
+					<td id="tb_fast_open"></td>
+				</tr>
+			</table>
+			<button class="modify_btn" type="button" onclick="showModifyModal();insertModalData();">修改信息</button>
+			<button class="restart_btn" type="button" onclick="restartServer()">重启服务</button>
+			<button class="stop_btn" type="button" onclick="stopServer()">关闭服务</button>
+		</div>
+
+		<!--js文件-->
+		<!--配置修改页面-start-->
+		<div class="modal fade" tabindex="-1" role="dialog" id="modify_config">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title">配置信息修改</h4>
+					</div>
+					<form action="">
+						<div class="modal-body">
+							<div class="row">
+								<div class="col-sm-12">
+									<span class="col-sm-3">server</span>
+									<input class="col-sm-4 form-control" id="modify_server" value="">
+								</div>
+								<div class="col-sm-12">
+									<span class="col-sm-3">local_address</span>
+									<input class="col-sm-4 form-control" id="modify_local_address">
+								</div>
+								<div class="col-sm-12">
+									<span class="col-sm-3">local_port</span>
+									<input class="col-sm-4 form-control" id="modify_local_port" value="">
+								</div>
+								<div class="col-sm-12">
+									<span class="col-sm-3">timeout</span>
+									<input class="col-sm-4 form-control" id="modify_timeout" value="">
+								</div>
+								<div class="col-sm-12">
+									<span class="col-sm-3">method</span>
+									<select id="modify_method" class="col-sm-4 form-control" name="method-select">
+										<option value="rc4-md5">rc4-md5</option>
+										<option value="salsa20">salsa20</option>
+										<option value="chacha20">chacha20</option>
+										<option value="chacha20-ietf">chacha20-ietf</option>
+										<option value="aes-256-cfb">aes-256-cfb</option>
+										<option value="aes-192-cfb">aes-192-cfb</option>
+										<option value="aes-128-cfb">aes-128-cfb</option>
+										<option value="aes-256-ctr">aes-256-ctr</option>
+										<option value="aes-192-ctr">aes-192-ctr</option>
+										<option value="aes-128-ctr">aes-128-ctr</option>
+										<option value="bf-cfb">bf-cfb</option>
+										<option value="camellia-128-cfb">camellia-128-cfb</option>
+										<option value="camellia-192-cfb">camellia-192-cfb</option>
+										<option value="camellia-256-cfb">camellia-256-cfb</option>
+										<option value="aes-128-gcm">aes-128-gcm</option>
+										<option value="aes-192-gcm">aes-192-gcm</option>
+										<option value="aes-256-gcm">aes-256-gcm</option>
+										<option value="chacha20-ietf-poly1305">chacha20-ietf-poly1305</option>
+									</select>
+								</div>
+								<div class="col-sm-12">
+									<span class="col-sm-3">fastopen</span>
+									<select id="modify_fastopen" class="col-sm-4 form-control" name="fast_open_select">
+										<option value="true">true</option>
+										<option value="false">false</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="close_btn" data-dismiss="modal">取消并关闭</button>
+							<input id="update_btn" type="button" class="submit_btn" onclick="updateConfig()" value="提交修改">
+						</div>
+					</form>
+				</div>
+				<!-- /.modal-content -->
+			</div>
+			<!-- /.modal-dialog -->
+		</div>
+		<!-- /.modal -->
+		<!--端口修改页面-end-->
+
+		<script src="../static/js/jquery.min.js"></script>
+		<script src="../static/js/bootstrap.min.js"></script>
+
+		<script>
+			loadSSConfig();
+			function loadSSConfig(){
+				var ss_data;
+				$.ajax({
+					url:"/getssinfo",
+					type:"get",
+					async:false,
+					dataType:"json",
+					success:function(data){
+						ss_data = data;
+					},
+					error:function(){
+						alert("获取失败");
+					}
+				});
+				document.getElementById("tb_server").innerHTML=ss_data.server;
+				document.getElementById("tb_local_address").innerHTML=ss_data.local_address;
+				document.getElementById("tb_local_port").innerHTML=ss_data.local_port;
+				document.getElementById("tb_timeout").innerHTML=ss_data.timeout;
+				document.getElementById("tb_method").innerHTML=ss_data.method;
+				document.getElementById("tb_fast_open").innerHTML=ss_data.fast_open;
+			}
+			function showModifyModal(){
+				//弹出modal
+				$("#modify_config").modal('show');
+			}
+			function insertModalData(){
+				//给modal插入数据
+				$("#modify_server").val(document.getElementById("tb_server").innerText);
+				$("#modify_local_address").val(document.getElementById("tb_local_address").innerHTML);
+				$("#modify_local_port").val(document.getElementById("tb_local_port").innerHTML);
+				$("#modify_timeout").val(document.getElementById("tb_timeout").innerHTML);
+				$("#modify_method").val(document.getElementById("tb_method").innerHTML);
+				$("#modify_fastopen").val(document.getElementById("tb_fast_open").innerHTML);
+				
+			}
+			function updateConfig() {
+				//获取修改的值
+				var server = $("#modify_server").val();
+				var local_address = $("#modify_local_address").val();
+				var local_port = $("#modify_local_port").val();
+				var timeout = $("#modify_timeout").val();
+				var method = $("#modify_method").val();
+				var fastopen = $("#modify_fastopen").val();
+				//回写table
+				document.getElementById("tb_server").innerHTML=server;
+				document.getElementById("tb_local_address").innerHTML=local_address;
+				document.getElementById("tb_local_port").innerHTML=local_port;
+				document.getElementById("tb_timeout").innerHTML=timeout;
+				document.getElementById("tb_method").innerHTML=method;
+				document.getElementById("tb_fast_open").innerHTML=fastopen;
+				
+				//关闭模态
+				$("#modify_config").modal('hide');
+				
+				//修改服务器的值
+				data = {"server":server,
+				       "local_address":local_address,
+				       "local_port":local_port,
+				       "timeout":timeout,
+				       "method":method,
+				       "fastopen":fastopen}
+				$.ajax({
+					type:"post",
+					url:"/portssinfo",
+					data:JSON.stringify(data),
+					contentType: "application/json; charset=UTF-8",
+					success:function(){
+						alert("修改成功,下次重启时生效");
+					},
+					error:function(){
+						alert("更新失败，请重试");
+					}
+				});
+			};
+			function restartServer(){
+                            $.ajax({
+                                "url":"/resartss",
+                                "type":"get",
+                                success:function(){
+                                },
+                                error:function(){
+                                    alert("重启失败，请重试");
+                                }
+                            });
+			}
+			function stopServer(){
+                            $.ajax({
+                                "url":"/stopss",
+                                "type":"get",
+                                success:function(){
+                                },
+                                error:function(){ 
+                                    alert("关闭失败，请重试");
+                                }
+                            });
+			};
+		</script>
+	</body>
+</html>

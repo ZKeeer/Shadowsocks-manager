@@ -1,0 +1,160 @@
+main {
+     background: linear-gradient(to right top, rgba(25,125,191,0.48), rgba(25,152,111,0.55)), url() center center no-repeat  ;
+     background-size: cover;
+   }
+
+header {
+     position: absolute;
+     top: 10px;
+     width: 100%;
+   }
+
+header .login {
+  float: right;
+  margin-right: 20px;
+  font-size: 25px;
+}
+
+header .login:hover {
+  color: #fff;
+}
+
+/* .flip-modal{
+  display: none;
+}
+.show{
+  display: block!important;
+} */
+
+.modal {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  width: 400px;
+  padding: 16px;
+  background-color: rgba(115,145,145,0.05);
+  box-shadow: 0 2px 2px 3px rgba(0,0,0,0.3)
+}
+
+.modal .close {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.modal .close:hover {
+  color: #fff;
+}
+
+.modal .tabs {
+  text-align: center;
+}
+
+.modal .tabs a {
+  display: inline-block;
+  font-size: 16px;
+  margin: 0 10px;
+  color: #666;
+}
+
+.modal .tabs a:hover{
+  color: #fff;
+  }
+
+.modal .tabs a.active {
+  border-bottom: 2px solid #444;
+  color: #444;
+}
+
+.modal .content {
+  padding: 20px 40px;
+}
+
+.modal .errormsg {
+  color: #ddd;
+  font-size: 14px;
+}
+
+.modal .content .input-field {
+  position: relative;
+  margin-top: 10px;
+}
+
+.modal .content .input-field .fa {
+  position: absolute;
+  left:13px;
+  top: 13px;
+}
+
+.modal .content input[type=text],
+.modal .content input[type=password] {
+  width: 100%;
+  padding: 10px 10px 10px 28px;
+  outline: none;
+}
+
+.modal .content input[type=submit] {
+  padding: 6px 20px;
+  border: none;
+  background: rgba(115,145,145,0.05);
+  box-shadow: 0px 0px 2px rgba(255, 255, 255, 0.7);
+  border-radius: 8px;
+  outline: none;
+  color: #fff;
+  position: absolute;
+  left: calc(50% - 32px);
+}
+
+.modal .content input[type=submit]:hover {
+  background-color: rgba(68,68,68,0.4);
+  transition: 1s;
+}
+
+.flip-modal.login .modal-login,
+.flip-modal.register .modal-register {
+  transform: translate(-50%,-50%) rotateY(0deg);
+  backface-visibility: hidden;
+  transition: all 1s;
+}
+
+.flip-modal.login .modal-register,
+.flip-modal.register .modal-login {
+  transform: translate(-50%,-50%) rotateY(180deg);
+  backface-visibility: hidden;
+  transition: all 1s;
+}
+#errortips{
+	margin-top: 0.9vw;
+	text-align: left;
+	font-size: 0.9vw;
+	color: red;
+	display: none;
+}
+button.normal {
+	margin-top: 22px;
+	height: 35px;
+	width: 115px;
+	border-radius: 10px;
+	font-size: 15px;
+	letter-spacing: 0.4vw;
+        text-align: center;
+	display: block;
+        margin-left: auto;
+        margin-right: auto;
+}
+button.normal:hover {
+	margin-top: 22px;
+	height: 35px;
+	width: 115px;
+	border-radius: 10px;
+	font-size: 15px;
+	letter-spacing: 0.4vw;
+	text-align: center;
+        /*发光*/
+        background-color: rgb(25,125,191);
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+
+}

@@ -1,0 +1,119 @@
+<!DOCTYPE>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="Keywords" content="" />
+		<meta name="descriotion" content="" />
+		<title>SSAdmin系统信息</title>
+		<link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css">
+		<style>
+			table.scholarship_gainer_table {
+				width: 900px;
+				height: 180px;
+				margin: 26px 0 0 44px;
+			}
+			
+			table tbody .first-tr {
+				background: #f5f5f5;
+			}
+			
+			.locationWrap {
+				background: #FFF;
+				height: 40px;
+				line-height: 40px;
+				overflow: hidden;
+				color: #898989;
+			}
+			
+			.locationWrap .location {
+				float: left;
+				height: 40px;
+				line-height: 40px;
+				padding-left: 20px;
+			}
+			
+			.locationWrap .location a,
+			.locationWrap .location a:active .locationWrap .location a:visited {
+				color: #898989;
+			}
+			
+			.locationWrap .location a:hover {
+				text-decoration: underline;
+			}
+			
+			.page-divide {
+				width: 354px;
+				margin: 0 0 0 44px;
+			}
+			
+			table thead tr th {
+				text-align: center;
+			}
+			
+			table tbody tr td {
+				text-align: center;
+			}
+			
+			.row {
+				width: 520px;
+				margin: 0 auto;
+			}
+			
+			.row .col-sm-12 {
+				margin-bottom: 10px;
+			}
+			
+			.col-sm-4.form-control {
+				width: 150px;
+				margin-right: 35px
+			}
+			
+			.form-control {
+				width: 94px;
+			}
+			
+			span.col-sm-3 {
+				margin: 4px 21px;
+			}
+			
+			h4 span {
+				font-size: 15px;
+				color: #2fd633;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!-- 端口信息及操作 -->
+		<div>
+			<section class="locationWrap">
+				<p class="location">您的当前位置&nbsp;&nbsp; 系统信息（此页弃用，信息不实）</p>
+			</section>
+			<table id="port_info_table" class="table table-hover table-bordered scholarship_gainer_table">
+				<thead>
+					<tr>
+						<th>CPU</th>
+						<th>CPU占用</th>
+						<th>内存</th>
+						<th>内存占用</th>
+						<th>硬盘容量</th>
+						<th>操作系统</th>
+						<th>平均网速</th>
+					</tr>
+				</thead>
+				<!--端口信息-->
+				<tbody>
+					<tr class="second-tr">
+						<td>1</td>
+						<td>8091</td>
+						<td>3333</td>
+						<td>1255</td>
+						<td>654</td>
+						<td>2345</td>
+						<td>是</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</body>
+</html>

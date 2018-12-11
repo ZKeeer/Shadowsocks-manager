@@ -1,0 +1,22 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,body,main {
+  height: 100%;
+}
+
+body {
+  font: 14px/1.5 Arial;
+}
+
+a {
+  text-decoration: none;
+  color: #444;
+}
+
+ul,li{
+  list-style: none;
+}

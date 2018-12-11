@@ -1,0 +1,1 @@
+{"local_address": "127.0.0.1", "local_port": 1081, "method": "rc4-md5", "timeout": 300, "server": "45.77.171.116", "fast_open": true, "port_password": {"8389": "ssadmin"}}

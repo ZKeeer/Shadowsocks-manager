@@ -1,0 +1,130 @@
+/*login-page-start*/
+body{
+	background-image: url("../images/college.png");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+.nav{
+	margin: 0px 0 0 0;
+    width: 100%;
+    height: 77px;
+    background: #10988dbd;
+}
+.nav p{
+	font-size: 27px;
+	letter-spacing: 3px;
+	margin: 0 0 0 1px;
+}
+.row-nav-top{
+	min-width: 1170px;
+}
+#login-title{
+	text-align: center;
+	font-size: 28px;
+	line-height: 67px;
+	color:black;
+}
+.glyphicon{
+	top:0;
+}
+.input-group{
+	margin-bottom: 10px;
+}
+#captcha{
+	width:78px;
+}
+.captcha-group{
+	width: 300px;
+}
+.regist-forget-pwd a{
+	float: left;
+	margin-top: 10px;
+}
+.regist{
+	margin-left: 5px;
+}
+.forget{
+	margin-left:207px;
+}
+/*login-page-end*/
+/*regist-page-start*/
+.regist-box{
+	width:300px;
+	margin:100px auto;
+}
+.regist-btn{
+	width:100px;
+	margin-right: 197px;
+}
+.reload-login{
+	width:100px;
+
+}
+/*regist-page-end*/
+/*forget-pwd-start*/
+.forget-pwd-box{
+	width:300px;
+	margin:100px auto;
+}
+.regist-submit{
+	width:100px;
+	margin-right: 198px;
+}
+/*forget-pwd-end*/
+
+/*校训-start*/
+ul#school-motto,p.info{
+	float: left;
+}
+ul#school-motto{
+	height: 30px;
+	margin: 23px 0 0 0;
+}
+ul#school-motto li{
+	float: left;
+	list-style: none;
+	font-size: 28px;
+	color:white; 
+}
+.motto-li{
+	margin-right:137px; 
+}
+.motto-li.first-li{
+	margin-left:60px; 
+}
+/*校训-end*/
+
+/*login-box-start*/
+.login-box,.regist-box,.forget-pwd-box{
+	width: 471px;
+	height: 350px;
+	margin: 100px auto;
+	border-top:4px solid #ccc;
+	border-left:4px solid #ccc;
+	border-right:4px solid #ccc;
+	border-bottom:4px solid #ccc;
+	background:#fff;
+}
+.login-box .input-group{
+	width: 400px;
+	margin: 10px auto;
+}
+.regist-forget-pwd a{
+	font-size: 17px;
+}
+.regist-box  .input-group{
+	width: 400px;
+	margin: 16px auto;
+}
+.forget-pwd-box .input-group{
+	width: 400px;
+	margin: 16px auto;
+}
+#forget-pwd-btn{
+
+}
+.top-nav{
+	width: 100px;
+	
+}
+/*login-box-end*/

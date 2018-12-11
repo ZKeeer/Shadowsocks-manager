@@ -1,0 +1,284 @@
+<!DOCTYPE>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="Keywords" content="" />
+		<meta name="descriotion" content="" />
+		<title>SSAdmin端口信息</title>
+		<link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css">
+		<style>
+			table.scholarship_gainer_table {
+				width: 900px;
+				height: 180px;
+				margin: 26px 0 0 44px;
+			}
+			
+			table tbody .first-tr {
+				background: #f5f5f5;
+			}
+			
+			.locationWrap {
+				background: #FFF;
+				height: 40px;
+				line-height: 40px;
+				overflow: hidden;
+				color: #898989;
+			}
+			
+			.locationWrap .location {
+				float: left;
+				height: 40px;
+				line-height: 40px;
+				padding-left: 20px;
+			}
+			
+			.locationWrap .location a,
+			.locationWrap .location a:active .locationWrap .location a:visited {
+				color: #898989;
+			}
+			
+			.locationWrap .location a:hover {
+				text-decoration: underline;
+			}
+			
+			.page-divide {
+				width: 354px;
+				margin: 0 0 0 44px;
+			}
+			
+			table thead tr th {
+				text-align: center;
+			}
+			
+			table tbody tr td {
+				text-align: center;
+			}
+			
+			.row {
+				width: 520px;
+				margin: 0 auto;
+			}
+			
+			.row .col-sm-12 {
+				margin-bottom: 10px;
+			}
+			
+			.col-sm-4.form-control {
+				width: 150px;
+				margin-right: 35px
+			}
+			
+			.form-control {
+				width: 94px;
+			}
+			
+			span.col-sm-3 {
+				margin: 4px 21px;
+			}
+			
+			.submit_btn {
+				width: 105px;
+				height: 34px;
+				border-radius: 6px;
+				color: #333;
+				background-color: #fff;
+				border-color: #ccc;
+			}
+			
+			.close_btn {
+				width: 110px;
+				height: 34px;
+				border-radius: 6px;
+				color: #333;
+				background-color: #fff;
+				border-color: #ccc;
+			}
+			.add_btn {
+				margin-top: 26px;
+				margin-left: 44px;
+				width: 95px;
+				height: 34px;
+				border-radius: 6px;
+				color: #333;
+				background-color: #fff;
+				border-color: #ccc;
+			}
+                        .restart_btn {
+                                margin-top: 26px;
+                                margin-left: 23px;
+
+                                width: 95px;
+                                height: 34px;
+                                border-radius: 6px;
+                                color: #333;
+                                background-color: #fff;
+                                border-color: #ccc;
+                        }
+			
+			h4 span {
+				font-size: 15px;
+				color: #2fd633;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!-- 端口信息及操作 -->
+		<div>
+			<section class="locationWrap">
+				<p class="location">您的当前位置&nbsp;&nbsp; 端口信息及操作</p>
+			</section>
+			<table id="port_info_table" class="table table-hover table-bordered scholarship_gainer_table">
+				<thead>
+					<tr>
+						<th>id</th>
+						<th>端口</th>
+						<th>密码</th>
+						<th>已用流量(MB)</th>
+						<th>流量上限(MB)</th>
+						<th>速度上限(KB/s)</th>
+						<th>修改设置</th>
+						<th>端口是否可用</th>
+					</tr>
+				</thead>
+				<!--端口信息-->
+				<tbody>
+					<tr class="second-tr">
+						<td>1</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td><a id="1" onclick="showModifyModal(this);modifyConfig(this);" class="check_btn">修改</a>&nbsp;&nbsp;
+							<a id="1" onclick="delThisRow(this)" class="delete_btn">删除</a></td>
+						<td>是</td>
+					</tr>
+				</tbody>
+			</table>
+			<button class="add_btn" onclick="showAddPortModal(this);addPortConfig(this);" type="button">添加端口</button>
+			<button class="add_btn" onclick="loadPortInfo()" type="button">刷新信息</button>
+                        <button class="restart_btn" type="button" onclick="restartServer()">重启服务</button>
+		</div>
+		
+		<!--js文件-->
+		<!--端口添加页面-start-->
+		<div class="modal fade" tabindex="-1" role="dialog" id="add_port">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title">添加端口信息</h4>
+					</div>
+					<form action="">
+						<div class="modal-body">
+							<div class="row">
+								<div class="col-sm-12">
+									<span class="col-sm-3">id</span>
+									<input class="col-sm-4 form-control" id="add_port_id" readonly="readonly">
+								</div>
+								<div class="col-sm-12">
+									<span class="col-sm-3">端口号</span>
+									<input class="col-sm-4 form-control" id="add_port_port" placeholder="数字(不要与已有冲突)">
+								</div>
+								<div class="col-sm-12">
+									<span class="col-sm-3">密码</span>
+									<input type="text" class="col-sm-4 form-control" id="add_port_passwd" value="">
+								</div>
+								<div class="col-sm-12">
+									<span class="col-sm-3">已用流量(MB)</span>
+									<input type="text" class="col-sm-4 form-control" id="add_port_used" value="" readonly="readonly">
+								</div>
+								<div class="col-sm-12">
+									<span class="col-sm-3">流量上限(MB)</span>
+									<input type="text" class="col-sm-4 form-control" id="add_port_limit" value="">
+								</div>
+								<div class="col-sm-12">
+									<span class="col-sm-3">速度上限(KB/s)</span>
+									<input type="text" class="col-sm-4 form-control" id="add_port_speed" value="">
+								</div>
+								<div class="col-sm-12">
+									<span class="col-sm-3">端口是否可用</span>
+									<input type="text" class="col-sm-4 form-control" id="add_port_useable" value="是">
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="close_btn" data-dismiss="modal">取消并关闭</button>
+							<input type="button" class="submit_btn" onclick="addPortConfirm(this)" value="确认添加">
+						</div>
+					</form>
+				</div>
+				<!-- /.modal-content -->
+			</div>
+			<!-- /.modal-dialog -->
+		</div>
+		<!-- /.modal -->
+		<!--端口添加页面-end-->
+		
+		<!--js文件-->
+		<!--端口修改页面-start-->
+		<div class="modal fade" tabindex="-1" role="dialog" id="modify_port_config">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title">端口信息修改</h4>
+					</div>
+					<form action="">
+						<div class="modal-body">
+							<div class="row">
+								<div class="col-sm-12">
+									<span class="col-sm-3">id</span>
+									<input type="number" class="col-sm-4 form-control" id="modify_id" readonly="readonly" value="">
+								</div>
+								<div class="col-sm-12">
+									<span class="col-sm-3">端口号</span>
+									<input type="number" class="col-sm-4 form-control" id="modify_port" readonly="readonly">
+								</div>
+								<div class="col-sm-12">
+									<span class="col-sm-3">密码</span>
+									<input type="text" class="col-sm-4 form-control" id="modify_passwd" value="">
+								</div>
+								<div class="col-sm-12">
+									<span class="col-sm-3">已用流量(MB)</span>
+									<input type="text" class="col-sm-4 form-control" id="modify_used" value="">
+								</div>
+								<div class="col-sm-12">
+									<span class="col-sm-3">流量上限(MB)</span>
+									<input type="text" class="col-sm-4 form-control" id="modify_limit" value="">
+								</div>
+								<div class="col-sm-12">
+									<span class="col-sm-3">速度上限(KB/s)</span>
+									<input type="text" class="col-sm-4 form-control" id="modify_speed" value="">
+								</div>
+								<div class="col-sm-12">
+									<span class="col-sm-3">是否可用</span>
+									<input class="col-sm-4 form-control" id="modify_useable" value="">
+								</div>
+								<span id="rowid" style="display: none;"></span>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="close_btn" data-dismiss="modal">取消并关闭</button>
+							<input id="update_btn" type="button" class="submit_btn" onclick="updateConfig()" value="提交修改">
+						</div>
+					</form>
+				</div>
+				<!-- /.modal-content -->
+			</div>
+			<!-- /.modal-dialog -->
+		</div>
+		<!-- /.modal -->
+		<!--端口修改页面-end-->
+
+		<script src="../static/js/jquery.min.js"></script>
+		<script src="../static/js/bootstrap.min.js"></script>
+                <script src="../static/js/port.js"></script>
+		<script>
+                        loadPortInfo();
+		</script>
+	</body>
+
+</html>

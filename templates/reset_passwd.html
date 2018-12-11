@@ -1,0 +1,199 @@
+<!DOCTYPE>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="Keywords" content="" />
+		<meta name="descriotion" content="" />
+		<title>SSAdmin更改密码</title>
+		<link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css">
+		<style>
+			table.scholarship_gainer_table {
+				width: 300px;
+				height: 180px;
+				margin: 26px 0 0 44px;
+			}
+			
+			table tbody .first-tr {
+				background: #f5f5f5;
+			}
+			
+			.locationWrap {
+				background: #FFF;
+				height: 40px;
+				line-height: 40px;
+				overflow: hidden;
+				color: #898989;
+			}
+			
+			.locationWrap .location {
+				float: left;
+				height: 40px;
+				line-height: 40px;
+				padding-left: 20px;
+			}
+			
+			.locationWrap .location a,
+			.locationWrap .location a:active .locationWrap .location a:visited {
+				color: #898989;
+			}
+			
+			.locationWrap .location a:hover {
+				text-decoration: underline;
+			}
+			
+			.page-divide {
+				width: 354px;
+				margin: 0 0 0 44px;
+			}
+			
+			table thead tr th {
+				text-align: center;
+			}
+			
+			table tbody tr td {
+				text-align: center;
+			}
+			
+			.row {
+				width: 520px;
+				margin: 0 auto;
+			}
+			
+			.row .col-sm-12 {
+				margin-bottom: 10px;
+			}
+			
+			.col-sm-4.form-control {
+				width: 150px;
+				margin-right: 35px
+			}
+			
+			.form-control {
+				width: 94px;
+			}
+			
+			span.col-sm-3 {
+				margin: 4px 21px;
+			}
+			
+			.modify_btn {
+				margin-top: 23px;
+				margin-left: 44px;
+				width: 95px;
+				height: 34px;
+				border-radius: 6px;
+				color: #333;
+				background-color: #fff;
+				border-color: #ccc;
+			}
+			
+			#tips {
+				margin-top: 1px;
+				margin-left: 45px;
+				display: block;
+				color: red;
+				visibility: hidden;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!-- ss配置信息及操作 -->
+		<div>
+			<section class="locationWrap">
+				<p class="location">您的当前位置&nbsp;：&nbsp; 修改SSAdmin登录密码</p>
+			</section>
+			<table class="scholarship_gainer_table">
+				<tr>
+					<th>原密码:</th>
+					<td><input id="original_passwd" type="password" /></td>
+				</tr>
+				<tr>
+					<th>新密码:</th>
+					<td><input id="new_passwd" type="password" /></td>
+				</tr>
+				<tr>
+					<th>再次输入确认:</th>
+					<td><input id="confirm_new_passwd" type="password" /></td>
+				</tr>
+			</table>
+			<span id="tips">* 两次输入不相符</span>
+			<button class="modify_btn" type="button" onclick="reSet();">修改密码</button>
+
+		</div>
+
+		<script src="../static/js/jquery.min.js"></script>
+		<script src="../static/js/bootstrap.min.js"></script>
+		<script src="../static/js/md5.js"></script>
+
+		<script type="text/javascript">
+			function reSet() {
+				//设置不可见
+				document.getElementById("tips").style.visibility="hidden";
+				//获取修改的值
+				var original_passwd = $("#original_passwd").val();
+				var new_passwd = $("#new_passwd").val();
+				var confirm_new_passwd = $("#confirm_new_passwd").val();
+
+				if(original_passwd == '') return;
+				if(new_passwd == '') return;
+				if(confirm_new_passwd == '') return;
+
+				if(new_passwd != confirm_new_passwd) {
+					document.getElementById("tips").innerHTML = "* 两次输入不相符，请重新输入";
+					document.getElementById("tips").style.visibility = "visible";
+					$("#confirm_new_passwd").val("");
+					$("#confirm_new_passwd").focus();
+					return;
+				}
+				document.getElementById("tips").style.visibility = "hidden";
+				//验证密码真伪
+				var passwd_str_pre = "passwd=";
+				var passwd_str = hex_md5(original_passwd);
+				var isPasswd = false;
+				var cookie_str = document.cookie;
+				var cookie_str_list = cookie_str.split(';');
+				for(var i = 0; i < cookie_str_list.length; i++) {
+					if(cookie_str_list[i].indexOf(passwd_str_pre) != -1) {
+						var tmp = cookie_str_list[i].replace(passwd_str_pre,"");
+                                                tmp = tmp.replace(/^\s*/,"");
+                                                tmp = tmp.replace(/\s*$/,"");
+						if(tmp == passwd_str) {
+							isPasswd = true;
+						} else {
+							isPasswd = false;
+						}
+					}
+				}
+				if(isPasswd == true) {
+					data = {"passwd":passwd_str,"new_passwd":new_passwd};
+					$.ajax({
+						type:"post",
+						url:"/resetPasswd",
+						async:true,
+						data:JSON.stringify(data),
+						contentType: "application/json; charset=UTF-8",
+						success:function(){
+							alert("修改成功");
+							document.getElementById("original_passwd").innerHTML="";
+							document.getElementById("new_passwd").innerHTML="";
+							document.getElementById("confirm_new_passwd").innerHTML="";
+							document.getElementById("tips").style.visibility="hidden";
+						},
+						error:function(){
+							alert("修改失败，请重试");
+						}
+					});
+				} else if(isPasswd == false) {
+					document.getElementById("tips").innerHTML="* 密码错误，请重试";
+					document.getElementById("tips").style.visibility="visible";
+					document.getElementById("original_passwd").focus();
+					return;
+				}
+			};
+		</script>
+
+	</body>
+
+</html>
