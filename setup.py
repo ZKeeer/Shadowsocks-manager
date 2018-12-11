@@ -74,25 +74,26 @@ def install():
 
 def start():
     # 清理老的进程
-    command_string = "ps aux|grep ssadmin.py"
+    command_string = "sudo ps aux|grep ssadmin.py"
     res = str(subprocess.getoutput(command_string))
     for item in res.split("\n"):
         pid = re.sub("\s+","#",item).split("#")[1]
-        subprocess.getoutput("kill -9 {}".format(pid))
-    command_string = "nohup python3 ssadmin.py &"
-    subprocess.getoutput(command_string)
-    subprocess.getoutput("")
-    subprocess.getoutput("")
+        subprocess.getoutput("sudo kill -9 {}".format(pid))
+    os.system("nohup python3 ssadmin.py &")
+    #res = subprocess.getoutput("python3 ssadmin.py")
+    res = subprocess.getoutput("cd .")
+    res = subprocess.getoutput("cd .")
+    print("ssadmin started.")
 
 
 def stop():
     # 清理老的进程
-    command_string = "ps aux|grep ssadmin.py"
+    command_string = "sudo ps aux|grep ssadmin.py"
     res = str(subprocess.getoutput(command_string))
     for item in res.split("\n"):
         pid = re.sub("\s+","#",item).split("#")[1]
-        print(pid, item)
-        subprocess.getoutput("kill -9 {}".format(pid))
+        subprocess.getoutput("sudo kill -9 {}".format(pid))
+    print("ssadmin stoped.")
 
 def restart():
     # 先执行stop 再执行start

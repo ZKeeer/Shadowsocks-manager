@@ -34,7 +34,7 @@ def checkUsedAndLimit():
         ss_dict = dict(json.loads(fr.readline()))
     isUpdate = False
     for port, port_info in port_info_dict.items():
-        if port_info.get("used", 0) > port_info.get("limit", 0):
+        if int(port_info.get("used", 0)) > int(port_info.get("limit", 0)):
             isUpdate = True
             # 更新port.json
             port_info.update({"useable": False})
@@ -72,7 +72,7 @@ def getPortTraffic():
         count_watch = item_res[1]
         port_watch = item_res[9]
         # 将流量统计转换为MB，上取整
-        count_watch = int(float(count_watch) / 1000 / 1000) + 1
+        count_watch = int(float(count_watch) / 1000 / 1000)
         # 将port_watch转换为标准格式
         port_watch = port_watch.replace("spt:","")
         # 获取port.json中的信息

@@ -1,7 +1,7 @@
 function restartServer() {
 	//重启ss服务器
 	$.ajax({
-		"url": "/resartss",
+		"url": "/restartss",
 		"type": "get",
 		success: function() {},
 		error: function() {

@@ -266,49 +266,50 @@ def logout():
 @app.route('/startss')
 def startss():
     """
-    start shadowsocks
+    2018-12-05 16:09:25 INFO     loading libcrypto from libcrypto.so.1.0.0
+    started
     """
     # 如果用户状态不符合，返回500
     if not checkUserStatus(request):
         return 'error', 500
     # else
     exec_string = "ssserver -c {} -d start".format(ss_path)
-    res = subprocess.check_output(exec_string).decode('utf8')
-    if "started" in res:
-        return 'succeed', 200
-    return 'error', 500
+    res = subprocess.getoutput(exec_string)
+    return 'succeed', 200
 
 
 @app.route('/stopss')
 def stopss():
     """
-    stop shadowsocks
+    INFO: loading config from shadowsocks.json
+    stopped
     """
     # 如果用户状态不符合，返回500
     if not checkUserStatus(request):
         return 'error', 500
     # else
     exec_string = "ssserver -c {} -d stop".format(ss_path)
-    res = subprocess.check_output(exec_string).decode('utf8')
-    if "stoped" in res:
-        return 'succeed', 200
-    return 'error', 500
+    res = subprocess.getoutput(exec_string)
+    return 'succeed', 200
 
 
 @app.route('/restartss')
 def restartss():
     """
-    restart shadowsocks
+    2018-12-05 16:10:40 INFO     loading libcrypto from libcrypto.so.1.0.0
+    stopped
+    started
     """
     # 如果用户状态不符合，返回500
     if not checkUserStatus(request):
         return 'error', 500
     # else:
-    exec_string = "ssserver -c {} -d restart".format(ss_path)
-    res = subprocess.check_output(exec_string).decode('utf8')
-    if "started" in res:
-        return 'succeed', 200
-    return 'error', 500
+    try:
+        res = subprocess.getoutput("ssserver -c {} -d stop".format(ss_path))
+    except BaseException as e:
+        pass
+    res = subprocess.getoutput("ssserver -c {} -d start".format(ss_path))
+    return 'succeed', 200
 
 @app.route('/resetPasswd', methods=['POST'])
 def resetPasswd():
@@ -342,7 +343,6 @@ def getRobotsTxt():
 
 def checkTime():
     while True:
-        print("check")
         try:
             # 获取流量监控信息
             portlib.getPortTraffic()
@@ -353,8 +353,8 @@ def checkTime():
             # 检查速度限制
         except BaseException as e:
             with open("log", "a") as fa:
-                fa.write("{}#location_checkTime: {}".format(time.ctime(), e))
-        time.sleep(120)
+                fa.write("{}#location_checkTime: {}\n".format(time.ctime(), e))
+        time.sleep(300)
 
 
 if __name__ == '__main__':
