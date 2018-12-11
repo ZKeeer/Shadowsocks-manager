@@ -63,7 +63,7 @@ def install():
     portlib.delAllPortRule()
     portlib.addAllPortRule()
     res = subprocess.getoutput("sudo ssserver -c /etc/ssadmin/shadowsocks.json -d start")
-    res = subprocess.getoutput("sudo nohup python3 ssadmin.py &")
+    os.system("sudo nohup python3 ssadmin.py &")
     tipsString = """
     访问方式：
         1.若有域名解析到此ip，请访问http://domain:8000/
