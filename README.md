@@ -20,3 +20,12 @@ shadowsocks多用户管理，一键安装shadowsocks和ssadmin，控制端口流
 <h2>热烈欢迎PR~</h2>
 我第一次写前端，求大佬PR<br>
 或者有什么好的想法和功能，欢迎PR
+<br/>
+<img src="https://github.com/ZKeeer/SSAdmin/blob/master/static/img/ssadmin-1.png">
+<br/>
+<img src="https://github.com/ZKeeer/SSAdmin/blob/master/static/img/ssadmin-2.png">
+<br/>
+<img src="https://github.com/ZKeeer/SSAdmin/blob/master/static/img/ssadmin-3.png">
+<br/>
+<img src="https://github.com/ZKeeer/SSAdmin/blob/master/static/img/ssadmin-1.png">
+
