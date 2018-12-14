@@ -16,7 +16,8 @@ shadowsocks多用户管理，一键安装shadowsocks和ssadmin，控制端口流
 5.ssadmin默认用户admin 密码：ssadmin 登陆后请及时修改密码。<br/>
 6.通过ssadmin可以对shadowsocks启动ss/停止ss/修改配置/添加用户/限制流量/限制速度/端口流量监控/系统信息...<br/>
 7.如何优化提速，请查看我博客<br/>
-8.如果您的vps同时运行其他服务，或者想用80端口（默认是8000）运行，请安装nginx并进行合理配置。
+8.如果您的vps同时运行其他服务，或者想用80端口（默认是8000）运行，请安装nginx并进行合理配置。<br/>
+9.进一步优化请访问：http://zkeeer.space/?tag=shadowsocks
 <hr/>
 <h2>热烈欢迎PR~</h2>
 我第一次写前端，求大佬PR<br>
