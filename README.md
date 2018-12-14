@@ -3,7 +3,7 @@
 shadowsocks多用户管理，一键安装shadowsocks和ssadmin，控制端口流量/速度，查看端口状态，修改ss配置<br/>
 <hr/>
 <h3>notice:</h3>
-<li>限速功能/系统信息尚未完成，2018年12月13日之前完成。</li>
+<li>限速功能/系统信息尚未完成，<del>2018年12月13日之前</del>完成。</li>
 <li>仅适用于shadowsocks-python</li>
 <li>仅适用于Ubuntu，仅在Ubuntu 16.04 x64测试通过</li>
 <hr/>
