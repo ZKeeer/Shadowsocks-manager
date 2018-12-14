@@ -14,6 +14,8 @@ def install():
     res = subprocess.getoutput("sudo apt-get upgrade -y")
     print("安装依赖.......")
     res = subprocess.getoutput("sudo apt-get install dpkg -y")
+    res = subprocess.getoutput("sudo apt-get install python-m2crypto -y")
+    res = subprocess.getoutput("sudo apt-get install build-essential -y")
     res = subprocess.getoutput("sudo apt-get install python3-pip -y")
     res = subprocess.getoutput("sudo apt-get install python3-setuptools -y")
     #       安装flask相关

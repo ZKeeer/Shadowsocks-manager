@@ -342,6 +342,8 @@ def getRobotsTxt():
     return send_file("./static/robots.txt")
 
 def checkTime():
+    portlib.delAllPortRule()
+    portlib.addAllPortRule()
     while True:
         try:
             # 获取流量监控信息
