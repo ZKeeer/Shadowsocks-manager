@@ -358,7 +358,6 @@ def checkTime():
                 fa.write("{}#location_checkTime: {}\n".format(time.ctime(), e))
         time.sleep(300)
 
-
 if __name__ == '__main__':
     Thread(target=checkTime).start()
 
