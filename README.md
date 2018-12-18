@@ -6,6 +6,8 @@ shadowsocks多用户管理，一键安装shadowsocks和ssadmin，控制端口流
 <li>限速功能/系统信息尚未完成，<del>2018年12月13日之前</del>完成。</li>
 <li>仅适用于shadowsocks-python</li>
 <li>仅适用于Ubuntu，仅在Ubuntu 16.04 x64测试通过</li>
+<li><a href="https://www.vultr.com/?ref=7634513">vultr</a>、阿里云测试通过，腾讯云无法启动shadowsocks</li>
+<li>vultr新加坡 测试效果与 阿里云香港 差不多，价格更便宜，一个月3.5刀，只用链接注册有优惠https://www.vultr.com/?ref=7634513</li>
 <hr/>
 <h3>如何使用</h3>
 0.尽量使用root用户登录<br/>
