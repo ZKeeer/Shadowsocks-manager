@@ -41,9 +41,7 @@ def install():
     with open("./defaultConfig/user.json", "w", encoding="utf8") as fw:
         fw.write(json.dumps(userstring))
     # 获取本机IP
-    res = subprocess.getoutput("curl http://ip.taobao.com/service/getIpInfo.php?ip=myip")
-    res_dict = eval(str(res))
-    ip = res_dict.get("data",{}).get("ip",None)
+    ip = subprocess.getoutput("curl ifconfig.me")
     if not ip:  #上述方法获取不到IP的话，使用ifconfig
         res = subprocess.getoutput("sudo ifconfig")
         ip = ""
