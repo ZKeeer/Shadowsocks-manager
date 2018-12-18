@@ -14,6 +14,7 @@ def install():
     #res = subprocess.getoutput("sudo apt-get upgrade -y")
     print("安装依赖.......")
     res = subprocess.getoutput("sudo apt-get install dpkg -y")
+    res = subprocess.getoutput("sudo apt-get install curl -y")
     res = subprocess.getoutput("sudo apt-get install python-m2crypto -y")
     res = subprocess.getoutput("sudo apt-get install build-essential -y")
     res = subprocess.getoutput("sudo apt-get install python3-pip -y")
@@ -40,12 +41,16 @@ def install():
     with open("./defaultConfig/user.json", "w", encoding="utf8") as fw:
         fw.write(json.dumps(userstring))
     # 获取本机IP
-    res = subprocess.getoutput("sudo ifconfig")
-    ip = ""
-    for item in re.findall("inet addr:(\d+\.\d+\.\d+\.\d+)", res):
-        if item != '127.0.0.1':
-            ip = item
-            break
+    res = subprocess.getoutput("curl http://ip.taobao.com/service/getIpInfo.php?ip=myip")
+    res_dict = json.loads(res)
+    ip = res_dict.get("data",{}).get("ip",None)
+    if not ip:  #上述方法获取不到IP的话，使用ifconfig
+        res = subprocess.getoutput("sudo ifconfig")
+        ip = ""
+        for item in re.findall("inet addr:(\d+\.\d+\.\d+\.\d+)", res):
+            if item != '127.0.0.1':
+                ip = item
+                break
     # 写入shadowsocks.json本机ip
     ss_config = {}
     with open("./defaultConfig/shadowsocks.json", "r", encoding="utf8") as fr:
@@ -69,7 +74,7 @@ def install():
     tipsString = """
     访问方式：
         1.若有域名解析到此ip，请访问http://domain:8000/
-        2.访问http://{}:8000/
+        2.访问http://{}:8000/    如果此ip与您VPS公网IP不同，请以公网IP为准。
         3.默认用户名：admin 密码：ssadmin  登陆后请修改密码。""".format(ip)
     print(tipsString)
 
@@ -119,7 +124,12 @@ def gethelp():
 
 
 if __name__ == '__main__':
-    action = sys.argv[1]
+    action = "help"
+    try:
+        action = sys.argv[1]
+    except BaseException as e:
+        action = "help"
+
     if action=="install":
         install()
     elif action=="start":
