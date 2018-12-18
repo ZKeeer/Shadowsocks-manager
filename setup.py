@@ -42,6 +42,7 @@ def install():
         fw.write(json.dumps(userstring))
     # 获取本机IP
     ip = subprocess.getoutput("curl ifconfig.me")
+    ip = re.findall("(\d+\.\d+\.\d+\.\d+)", ip)[0]
     if not ip:  #上述方法获取不到IP的话，使用ifconfig
         res = subprocess.getoutput("sudo ifconfig")
         ip = ""
