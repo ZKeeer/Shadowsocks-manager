@@ -11,7 +11,7 @@ def install():
     # 安装python依赖
     print("更新环境.......")
     res = subprocess.getoutput("sudo apt-get update -y")
-    res = subprocess.getoutput("sudo apt-get upgrade -y")
+    #res = subprocess.getoutput("sudo apt-get upgrade -y")
     print("安装依赖.......")
     res = subprocess.getoutput("sudo apt-get install dpkg -y")
     res = subprocess.getoutput("sudo apt-get install python-m2crypto -y")
